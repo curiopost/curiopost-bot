@@ -50,7 +50,8 @@ client.on('messageCreate', async message => {
     if(message.content === '.archive') {
         if(message.channel.name.endsWith(message.author.id)) {
             await message.channel.send("Archived Thread.")
-            await message.channel.setArchived(true);;
+            await message.channel.setLocked(true);
+            await message.channel.setArchived(true);
            
     } else {
         message.channel.send('You can only archive your own thread!')
