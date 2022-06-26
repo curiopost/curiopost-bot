@@ -1,4 +1,10 @@
 // require('dotenv').config()
+const express = require('express')
+const app = express()
+app.get('/', async (req, res) => {
+  res.sendStatus(200)
+})
+app.listen(5000)
 const {Client, MessageEmbed} = require('discord.js');
 const { token } = process.env;
 const config = require('./config.json')
@@ -21,6 +27,16 @@ const client = new Client({
 client.on('messageCreate', async message => {
     if(message.author.bot) return;
     if(message.channel.id === config.channel) {
+      if(message.content.length > 75) {
+        await message.delete()
+        const msg = await message.channel.send(`<@${message.author.id}> Your message is too long try making it shorter (you can describe it more inside the thread)`)
+        setTimeout( async () => {
+          await msg.delete()
+          
+        }, 5000)
+
+        return;
+      }
         const embed = new MessageEmbed()
         .setTitle('Welcome to Views')
         .setDescription('Please Send a message below describing your bug and wait for me to open a thread!')
@@ -50,7 +66,7 @@ client.on('messageCreate', async message => {
     if(message.content === '.archive') {
         if(message.channel.name.endsWith(message.author.id)) {
             await message.channel.send("Archived Thread.")
-            await message.channel.setLocked(true);
+          await message.channel.setLocked(true);
             await message.channel.setArchived(true);
            
     } else {
