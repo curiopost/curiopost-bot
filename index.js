@@ -1,10 +1,4 @@
 // require('dotenv').config()
-const express = require('express')
-const app = express()
-app.get('/', async (req, res) => {
-  res.sendStatus(200)
-})
-app.listen(5000)
 const {Client, MessageEmbed} = require('discord.js');
 const { token } = process.env;
 const config = require('./config.json')
