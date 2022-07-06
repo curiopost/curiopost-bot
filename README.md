@@ -1,4 +1,4 @@
-##### Views bot
+##### Curiopost bot
 
 - Support bot for the Curiopost discord server that opens threads in bug report channel.
 
