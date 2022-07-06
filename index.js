@@ -32,7 +32,7 @@ client.on('messageCreate', async message => {
         return;
       }
         const embed = new MessageEmbed()
-        .setTitle('Welcome to Views')
+        .setTitle('Welcome to Curiopost')
         .setDescription('Please Send a message below describing your bug and wait for me to open a thread!')
         .setTimestamp()
         .setColor("RANDOM")
