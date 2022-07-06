@@ -1,6 +1,6 @@
 ##### Views bot
 
-- Support bot for the Views Community discord server that opens threads in bug report channel.
+- Support bot for the Curiopost discord server that opens threads in bug report channel.
 
 ##### Installation
 
@@ -10,3 +10,7 @@
 4. Run `npm install`
 5. Run `node index.js`
 6. Have fun you now have a discord support thread bot!
+
+##### Credits
+
+- This bot is a fork of [views-org/Views-bot](https://github.com/views-org/Views-bot)
