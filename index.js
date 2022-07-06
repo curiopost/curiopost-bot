@@ -55,6 +55,43 @@ client.on('messageCreate', async message => {
 })
 
 client.on('messageCreate', async message => {
+  if(message.author.bot) return;
+  if(message.channel.id === config.support_channel) {
+    if(message.content.length > 75) {
+      await message.delete()
+      const msg = await message.channel.send(`<@${message.author.id}> Your message is too long try making it shorter (you can describe it more inside the thread)`)
+      setTimeout( async () => {
+        await msg.delete()
+        
+      }, 5000)
+
+      return;
+    }
+      const embed = new MessageEmbed()
+      .setTitle('Welcome to Curiopost')
+      .setDescription('Please Send a message below describing what support you need and wait for me to open a thread!')
+      .setTimestamp()
+      .setColor("RANDOM")
+      const embed2 = new MessageEmbed()
+      .setTitle(`Welcome to bug reports ${message.author.username}`)
+      .setDescription('Please Explain your problem here, and wait for a developer to respond. If this is resolved please archive this thread by typing `.archive`')
+      .setTimestamp()
+      .setColor("RANDOM")
+      await message.channel.bulkDelete(2)
+     const thread =  await message.channel.threads.create({
+          name:  `${message.content} | ${message.author.id}`,
+          autoArchiveDuration: 10080,
+          reason: 'Bug Report'
+      })
+      if (thread.joinable) await thread.join();
+      await thread.members.add(message.author.id);
+      thread.send({embeds: [embed2]})
+      message.channel.send({embeds: [embed]})
+  }
+})
+
+
+client.on('messageCreate', async message => {
     if(message.author.bot) return;
     if(message.channel.type !== 'GUILD_PUBLIC_THREAD') return;
     if(message.content === '.archive') {
