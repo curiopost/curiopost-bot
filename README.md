@@ -5,7 +5,7 @@ Support bot for the Curiopost discord server that opens threads in bug report ch
 # Installation
 
 1. Add your channels into the `config.json` file.
-2. Change your stuff, such ass the "Views" part since you might be using this for other stuff.
+2. Change your stuff, such as the "Curiopost" part since you might be using this for other stuff.
 3. Add your token to the env `token=bot_token`
 4. Run `npm install`
 5. Run `node index.js`
