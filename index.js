@@ -41,7 +41,7 @@ client.on('messageCreate', async message => {
         .setDescription('Please Explain your bug here, and wait for a developer to respond. If this bug is resolved please archive this thread by typing `.archive`')
         .setTimestamp()
         .setColor("RANDOM")
-        await message.channel.bulkDelete(2)
+        await message.channel.bulkDelete(2, true)
        const thread =  await message.channel.threads.create({
             name:  `${message.content} | ${message.author.id}`,
             autoArchiveDuration: 10080,
@@ -77,11 +77,11 @@ client.on('messageCreate', async message => {
       .setDescription('Please Explain your problem here, and wait for a developer to respond. If this is resolved please archive this thread by typing `.archive`')
       .setTimestamp()
       .setColor("RANDOM")
-      await message.channel.bulkDelete(2)
+      await message.channel.bulkDelete(2, true)
      const thread =  await message.channel.threads.create({
           name:  `${message.content} | ${message.author.id}`,
           autoArchiveDuration: 10080,
-          reason: 'Bug Report'
+          reason: 'Support Question'
       })
       if (thread.joinable) await thread.join();
       await thread.members.add(message.author.id);
