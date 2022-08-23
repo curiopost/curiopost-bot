@@ -1,4 +1,4 @@
-// require('dotenv').config()
+ require('dotenv').config()
 const express = require("express")
 const app = express()
 app.get("/", async(req, res) => {
@@ -11,6 +11,7 @@ app.listen(PORT, () => {
 const {Client, MessageEmbed} = require('discord.js');
 const { token } = process.env;
 const config = require('./config.json')
+const ms = require('pretty-ms')
 const client = new Client({
     intents: ["GUILDS",
     
@@ -29,6 +30,14 @@ const client = new Client({
 
 client.on('messageCreate', async message => {
     if(message.author.bot) return;
+    if(message.content.toLowerCase() === ".ping") {
+      const l = await message.channel.send('Pinging...')
+      const ping = l.createdTimestamp - message.createdTimestamp
+      await l.edit(`Pong! (Websocket: ${client.ws.ping}ms. Roundtrip: ${ping}ms.)`)
+    }
+    if(message.content.toLowerCase() === ".uptime") {
+  return message.channel.send(`I have been running for: ${ms(client.uptime)}`)
+    }
     if(message.channel.id === config.channel) {
       if(message.content.length > 75) {
         await message.delete()
